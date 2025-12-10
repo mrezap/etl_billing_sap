@@ -16,10 +16,10 @@ def is_excel_file_open(target_file):
     except Exception:
         return None
 
-day_min_1 = (datetime.today() - timedelta(days=1)).strftime("%d.%m.%Y") #recheck
-temp_folder = fr"C:\Users\maulana.pahlevi\Documents\SAP\SAP GUI"
-txt_folder = fr"D:\CM Sharing Folder\@Database"
-site_code_file = "site_code_sap.txt"
+day_min_1 = (datetime.today() - timedelta(days=1)).strftime("%d.%m.%Y")
+#temp_folder = fr"C:\Users\maulana.pahlevi\Documents\SAP\SAP GUI"
+txt_folder = fr"D:\Playground\Project\etl_billing_sap\sap_code"
+site_code_file = "site_code_sap_allchannel.txt"
 channel_code_file = "channel_code_sap.txt"
 final_folder = fr"D:\CM Sharing Folder\@Database\Gdrive Share Folder\Billing TAM All Channel"
 #final_folder = fr"D:\CM Sharing Folder\Playground\Output" # for local testing
