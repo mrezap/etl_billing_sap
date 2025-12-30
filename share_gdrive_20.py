@@ -2,22 +2,18 @@ import os
 import shutil
 from datetime import datetime, timedelta
 from utils import get_valid_input_folder
-#from logger import logger
+from logger import logger
 
 source_folder = get_valid_input_folder()
 destination_folder = fr"D:\CM Sharing Folder\@Database\Gdrive Share Folder\Billing TAM Channel 20"
-export_filename = "BILLING SAP TEMP.xlsx"
-final_filename = f"BILLING SAP {(datetime.today() - timedelta(days=1)).strftime('%d %B %Y').upper()}.xlsx"
 
-# Get all file in source folder
-files = [os.path.join(source_folder, f) for f in os.listdir(source_folder) if os.path.isfile(os.path.join(source_folder, f))]
+target_filename = f"BILLING SAP {(datetime.today() - timedelta(days=1)).strftime('%d %B %Y').upper()}.xlsx"
 
-# Find latest modified time
-latest_file = max(files, key=os.path.getmtime)
-filename = os.path.basename(latest_file)
+source_file_path = os.path.join(source_folder, target_filename)
 
-# Copy file
-destination_path = os.path.join(destination_folder, final_filename)
-shutil.copy2(latest_file, destination_path)
-
-print(f"File terbaru berhasil dicopy ke: {destination_path}")
+if os.path.exists(source_file_path):
+    destination_path = os.path.join(destination_folder, target_filename)
+    shutil.copy2(source_file_path, destination_path)
+    logger.info(f"File '{target_filename}' berhasil dipindah ke: {destination_path}")
+else:
+    logger.info(f"File '{target_filename}' tidak ditemukan di folder source")
